@@ -13,7 +13,7 @@
  
  if( isset($_POST['btn-login']) ) { 
   
-  // prevent sql injections/ clear user invalid inputs
+  
   $email = trim($_POST['email']);
   $email = strip_tags($email);
   $email = htmlspecialchars($email);
@@ -21,7 +21,7 @@
   $pass = trim($_POST['pass']);
   $pass = strip_tags($pass);
   $pass = htmlspecialchars($pass);
-  // prevent sql injections / clear user invalid inputs
+  
   
   if(empty($email)){
    $error = true;
@@ -36,14 +36,14 @@
    $passError = "Wpisz hasło.";
   }
   
-  // if there's no error, continue to login
+  ///////logowanie
   if (!$error) {
    
-   $password = hash('sha256', $pass); // password hashing using SHA256
+   $password = hash('sha256', $pass); // haszowanie SHA256
   
-   $res=mysql_query("SELECT userId, userName, userPass FROM users WHERE userEmail='$email'");
+   $res=mysql_query("SELECT userId, userName, userPass FROM users WHERE userEmail='$email'"); //// mysql ecape
    $row=mysql_fetch_array($res);
-   $count = mysql_num_rows($res); // if uname/pass correct it returns must be 1 row
+   $count = mysql_num_rows($res);
    
    if( $count == 1 && $row['userPass']==$password ) {
     $_SESSION['user'] = $row['userId'];
@@ -133,6 +133,7 @@
    
     </form>
     </div> 
+   
 
 </div>
 

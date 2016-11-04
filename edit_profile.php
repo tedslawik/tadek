@@ -18,7 +18,7 @@ ob_start();
   $newname = trim($_POST['newname']);
   $newname = strip_tags($newname);
   $newname = htmlspecialchars($newname);
-  $oldname=$userRow['userName'];
+ // $oldname=$userRow['userName'];
   
      
      
@@ -30,7 +30,7 @@ ob_start();
    $nameError = "Imię musi zawierać conajmniej 3 znaki.";
   } else if (!preg_match("/^[a-zA-Z ]+$/",$newname)) {
    $error = true;
-   $nameError = "Imie musi zaierać polskie znaki.";
+   $nameError = "Imie nie zawiera liczb.";
    
   }
   
@@ -44,7 +44,7 @@ ob_start();
   if( !$error ) {
    if ($res) {
     $errTyp = "success";
-    $errMSG = "Gicior ";
+    $errMSG = "Imie zmieniono ";
    } else {
     $errTyp = "danger";
     $errMSG = "Coś nie tak..."; 
@@ -164,7 +164,7 @@ ob_start();
           <span class="text-danger"><?php echo $nameError; ?></span>
              <div class="form-group">
              <button type="submit" class="btn btn-block btn-primary" name="btn-name">Zamień</button>
-            
+             
              </div>
              
              <hr/>

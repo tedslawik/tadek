@@ -10,7 +10,7 @@
 
  if ( isset($_POST['btn-signup']) ) {
   
-  // clean user inputs to prevent sql injections
+ 
   $name = trim($_POST['name']);
   $name = strip_tags($name);
   $name = htmlspecialchars($name);
@@ -23,7 +23,7 @@
   $pass = strip_tags($pass);
   $pass = htmlspecialchars($pass);
   
-  // basic name validation
+  
   if (empty($name)) {
    $error = true;
    $nameError = "Wpisz swoje imię.";
@@ -35,12 +35,12 @@
    $nameError = "Imie musi zawierac litery.";
   }
   
-  //basic email validation
+ 
   if ( !filter_var($email,FILTER_VALIDATE_EMAIL) ) {
    $error = true;
    $emailError = "Wpisz porawnego maila.";
   } else {
-   // check email exist or not
+  
    $query = "SELECT userEmail FROM users WHERE userEmail='$email'";
    $result = mysql_query($query);
    $count = mysql_num_rows($result);
@@ -49,7 +49,7 @@
     $emailError = "Email juz istnieje.";
    }
   }
-  // password validation
+  //hasło
   if (empty($pass)){
    $error = true;
    $passError = "Wprowadź swoje hasło.";
@@ -58,13 +58,13 @@
    $passError = "Hasło musi mieć conajmniej 3 znaki.";
   }
   
-  // password encrypt using SHA256();
+  // haszoanie SHA256();
   $password = hash('sha256', $pass);
   
-  // if there's no error, continue to signup
+ 
   if( !$error ) {
    
-  $query = "INSERT INTO users(userName,userEmail,userPass) VALUES('$name','$email','$password')";
+  $query = "INSERT INTO users(userName,userEmail,userPass,admin) VALUES('$name','$email','$password','1')";
   $res = mysql_query($query);
     
    if ($res) {

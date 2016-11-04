@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<div class="navigation">
+<a class="prev" href="calendar.php?month=__prev_month__" onclick="$('#calendar').load('calendar.php?month=__prev_month__&_r=' + Math.random()); return false;"></a>
+<div class="title" >__cal_caption__</div>
+<a class="next" href="calendar.php?month=__next_month__" onclick="$('#calendar').load('calendar.php?month=__next_month__&_r=' + Math.random()); return false;"></a>
+</div>
+<table>
+<tr>
+<th class="weekday">niedziela</th>
+<th class="weekday">poniedzialek</th>
+<th class="weekday">wtorek</th>
+<th class="weekday">sroda</th>
+<th class="weekday">czwartek</th>
+<th class="weekday">piatek</th>
+<th class="weekday">sobota</th>
+</tr>
+__cal_rows__
+</table>
